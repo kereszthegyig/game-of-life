@@ -1,12 +1,18 @@
 var Application = (function(){
     var rows = 30;
     var columns = 30;
-    var width = 600;
-    var height= 600;
+    var width;
+    var height;
     var data, svg, grid, ID;
     var active = true;
-    var timer= 300;
+    var timer= 50;
     
+    
+    function setupInputs(){
+        rowsInput()
+        columnsInput()
+        timerInput()
+    }
     
     function setupEventListeners(){
         setupStep();
@@ -17,6 +23,13 @@ var Application = (function(){
     }
     
     function svgInit(){
+        if(window.innerHeight>window.innerWidth){
+            width = window.innerWidth * 0.8
+            height = width/columns*rows;
+        } else {
+            height = window.innerHeight * 0.6
+            width = height/rows*columns;
+        }
        
         grid = new Grid(rows, columns);
         data= grid.transformCells();
@@ -103,7 +116,7 @@ var Application = (function(){
         })
     }
     
-    //Helpers
+//Helpers
     
     function startPlay(){
         if(active){
@@ -120,12 +133,43 @@ var Application = (function(){
         active = true;
     }
     
+//Setup Inputs
+    function rowsInput(){
+        d3.select("#rows")
+            .on("input", function(){
+                if(event.target.value>=5 && event.target.value<=80){
+                    rows = event.target.value
+                    svgInit()
+                }
+            })
+    }
+//Setup Inputs
+    function columnsInput(){    
+    d3.select("#columns")
+        .on("input", function(e){
+            if(event.target.value>=5 && event.target.value<=80){
+                columns = event.target.value
+                svgInit()
+            }
+        })
+    }
+    
+    function timerInput(){
+    d3.select("#timer")
+        .on("input", function(e){
+            timer = event.target.value
+            clearTheInterval()
+            startPlay()
+        })
+    }
+    
 
 
 return {
     init: function(){
-            setupEventListeners()
+            setupInputs()
             svgInit()
+            setupEventListeners()
         }
     }
     
