@@ -1,0 +1,30 @@
+<% include ./partials/header %>
+<header>
+	<h1>Conway’s Game of Life</h1>
+</header>
+<section>
+	<div id="inputs">
+		<input type="number" id="columns" step="1" min=10  max=100 placeholder="Columns">
+		<input type="number" id="rows" step="1"  min=10 max=100 placeholder="Rows">
+		<input type="number" id="timer" step="50" min="50" placeholder="Timer (ms">
+	</div>
+	
+	
+	<svg 
+		version="1.1"
+		baseProfile="full"
+		xmlns="http://www.w3.org/2000/svg" 
+		id="table">
+	</svg>	
+	<div id="buttons">
+		<button id="step">Step</button>
+		<button id="random">Random generation</button>
+		<button id="play">Play</button>
+		<button id="stop">Stop</button>
+		<button id="reset">Reset</button>	
+	</div>
+</section>
+
+
+
+<% include ./partials/footer %>
