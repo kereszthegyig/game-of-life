@@ -86,3 +86,19 @@ Grid.prototype.transformCells = function(){
     return cells;
 }
 
+Grid.prototype.random = function(){
+    this.eachCell(function(cell){
+        cell.isAlive= Math.random()>0.5;
+        
+    })
+}
+
+Grid.prototype.resetCells = function(){
+    var cells = [];
+    this.eachCell(function(cell){
+        cell.isAlive = false;
+        cells.push(cell)
+    })
+    return cells
+}
+
