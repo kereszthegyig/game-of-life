@@ -78,3 +78,11 @@ Grid.prototype.step = function(){
     })
 }
 
+Grid.prototype.transformCells = function(){
+    var cells = [];
+    this.eachCell(function(cell){
+        cells.push(cell);
+    })
+    return cells;
+}
+
